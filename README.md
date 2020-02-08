@@ -9,9 +9,13 @@ Draw random unit squares (area = 1), in a region with area A. Then draw N random
 ## Demo 2:
 Same thing, but draw the points first, and then randomly place the square.
 
-### TODO: add a license
+### TODO:
+- Add plot for the number of squares hit by 1 point, 2 points, 3, etc.
+- Add sliders for number of points, number of squares, and the size of squares (as a percentage of size of canvas).
+- add a license
 
 
 ### Useful links:
 - Typescript basics [tutorial](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
+- Monte Carlo animation [example](https://codereview.stackexchange.com/questions/216614/monte-carlo-pi-animation?rq=1).
 
