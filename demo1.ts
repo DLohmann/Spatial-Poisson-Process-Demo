@@ -1,3 +1,5 @@
+import * as Plotly from 'plotly-latest.min.js';
+
 var canvas;
 var ctx;
 
@@ -172,6 +174,15 @@ function updatePlot() {
 	// update the plot on webpage to show how Poisson distribution is approximated.
 	// Plot next to actual Poisson plot.
 	// Also log to console.
+	const data: Plotly.BarData[] = [
+		{
+		  x: ['giraffes', 'orangutans', 'monkeys'],
+		  y: [20, 14, 23],
+		  type: 'bar'
+		}
+	  ];
+	  
+	  Plotly.newPlot('histogram_plot', data);
 }
 
 window.onload = window.onresize = function() {

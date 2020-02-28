@@ -1,0 +1,30 @@
+{
+  "name": "spatial-poisson-process-demo",
+  "version": "1.0.0",
+  "description": "Demo of a spatial Poisson point process. See README.md for details.",
+  "main": "demo1.js",
+  "dependencies": {
+    "plotly.js": "^1.52.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "TestSpatialPoissonProcess"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DLohmann/Spatial-Poisson-Process-Demo.git"
+  },
+  "keywords": [
+    "math",
+    "stats",
+    "statistics",
+    "data",
+    "probability"
+  ],
+  "author": "DLohmann",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/DLohmann/Spatial-Poisson-Process-Demo/issues"
+  },
+  "homepage": "https://github.com/DLohmann/Spatial-Poisson-Process-Demo#README.md"
+}
