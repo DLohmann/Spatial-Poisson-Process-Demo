@@ -10,7 +10,7 @@ Draw random unit squares (area = 1), in a region with area A. Then draw N random
 Same thing, but draw the points first, and then randomly place the square.
 
 ### TODO:
-- Write a [tsconfig.json file](https://stackoverflow.com/questions/43472778/typescript-exports-is-not-defined), to ensure that it is set up correctly, and the javascript does not give an "exports is not defined" error at runtime.
+- Write a [tsconfig.json file](https://stackoverflow.com/questions/43472778/typescript-exports-is-not-defined), to ensure that it is set up correctly, and the javascript does not give an "exports is not defined" error at runtime. Learn to use browserify.
 - Add plot for the number of squares hit by 1 point, 2 points, 3, etc.
 - Add htmlsliders for number of points, number of squares, and the size of squares (as a percentage of size of canvas).
 - Add text on simulation indicating probability that a single point will hit a square.

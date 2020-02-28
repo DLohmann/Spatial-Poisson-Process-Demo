@@ -4,6 +4,7 @@
   "description": "Demo of a spatial Poisson point process. See README.md for details.",
   "main": "demo1.js",
   "dependencies": {
+    "gts": "^1.1.2",
     "plotly.js": "^1.52.2"
   },
   "devDependencies": {},
