@@ -11,9 +11,16 @@ Same thing, but draw the points first, and then randomly place the square.
 
 ### TODO:
 - Add plot for the number of squares hit by 1 point, 2 points, 3, etc.
-- Add sliders for number of points, number of squares, and the size of squares (as a percentage of size of canvas).
-- add a license
-
+- Add htmlsliders for number of points, number of squares, and the size of squares (as a percentage of size of canvas).
+- Add text on simulation indicating probability that a single point will hit a square.
+- Add a button to control when to start simulation.
+- Add a license.
+- Upload to github pages  or google sites.
+- Unit test demo.
+- Upload a gif to wikipedia.
+- Consider making a 1 dimensional version where raindrops vertically fall into buckets in a row, and the buckets fill up over time, and the histogram of the amount of drops collected is plotted.
+- If the performance is not good, consider using webassembly or gpu to speed up the process of generating squares without collisions (which is an O(n^2) algorithm for n squares) and checking whether points are inside squares (also approximately O(n*m) for n squares and m points).
+- Tell friends.
 
 ### Useful links:
 - Typescript basics [tutorial](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
