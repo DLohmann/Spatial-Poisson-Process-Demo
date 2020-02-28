@@ -1,7 +1,7 @@
-import * as Plotly from 'plotly-latest.min.js';
+import * as Plotly from 'plotly.js';
 
-var canvas;
-var ctx;
+var canvas: HTMLCanvasElement;
+var ctx: CanvasRenderingContext2D;
 
 let num_points = 100;
 let num_squares = 5;
@@ -52,7 +52,7 @@ class Square {
 		// Choose random color. 3 rgb colors mean 3 hex values, meaning 3*8 bits.
 		// So there are 16777216 possible colors from 0 to 16777215.
 		ctx.beginPath();
-		ctx.lineWidth = "4";
+		ctx.lineWidth = 4;
 		ctx.strokeStyle = "#" + Math.floor(Math.random() * 16777215).toString(16);
 		ctx.rect(this.x, this.y, this.side, this.side);
 		ctx.stroke();
@@ -158,7 +158,7 @@ function setUpCanvas() {
 
 function drawAll() {
 	// Clear current drawing
-	ctx.clearRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	// Draw all points.
 	// Draw all squares.
