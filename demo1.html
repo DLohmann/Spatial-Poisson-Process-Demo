@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title>Spatial Poisson Process</title>
-		<script src="plotly-latest.min.js"></script>
+		<!--<script src="plotly-latest.min.js"></script>-->
+		<link rel="stylesheet" href="styles.css">
 	</head>
     <body>
 		<h2 align="center">Spatial Poisson Process</h2>
@@ -14,7 +15,24 @@
 		<span id="box"></span>
 		<script src="demo1.js"></script>
 		
-		<!--TODO: Insert a plot here of the amount of times a square contains 1 point, 2 points, 3 points, etc.-->>
+		<!--TODO: Get ticks to appear on slider, or the number to appear at the slider-->>
+		<p align="center">
+			<div class="slidecontainer" align="center">
+				<h3 class="squareslabel"> Squares: </h3>
+				<datalist id="ticks">
+					<option value="0" label="0"></option>
+					<option value="25"></option>
+					<option value="50" label="50"></option>
+					<option value="75"></option>
+					<option value="100" label="100"></option>
+				</datalist>
+				<input type="range" min="0" max="100" value="50" class="slider" id="numSquaresSlider" list="ticks">
+			</div>
+		</p>
+		
+		<!--TODO: Insert another slider for the number of points, but ensure that it all fits in page without scroll bar appearing-->
+		
+		<!--TODO: Insert a plot here of the amount of times a square contains 1 point, 2 points, 3 points, etc.-->
 		<p align="center"><div id="histogram_plot"></div></p>
     </body>
 </html>
