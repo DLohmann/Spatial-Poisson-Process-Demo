@@ -8,11 +8,12 @@ var slider_value_label = document.getElementById("squares_slider_val_label");
 //document.getElementById("slider_val_label").innerHTML = slider.value;
 //updateSliderLabel(slider.value);
 
+
 // numSquares slider.
 function updateSquaresSliderLabel(x: string) {
 	document.getElementById("squares_slider_val_label").innerHTML = x;
 	num_squares = parseInt(x);
-	// TODO: Add a button to re-run simulation when the number of points or squares changes. After it is run, the button will be greyed out. If numSquares or numPoints changes, then the button will be un-greyed and clickable to run simulation.
+	document.getElementById("run_button")["disabled"] = false;
 }
 function squaresSliderDecrement() {
 	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) - 1;
@@ -28,14 +29,15 @@ function squaresSliderIncrement() {
 function updatePointsSliderLabel(x: string) {
 	document.getElementById("points_slider_val_label").innerHTML = x;
 	num_points = parseInt(x);
+	document.getElementById("run_button")["disabled"] = false;
 }
 function pointsSliderDecrement() {
 	document.getElementById("num_points_slider")["value"] = parseInt(document.getElementById("num_points_slider")["value"]) - 1;
-	updateSquaresSliderLabel(document.getElementById("num_points_slider")["value"]);
+	updatePointsSliderLabel(document.getElementById("num_points_slider")["value"]);
 }
 function pointsSliderIncrement() {
 	document.getElementById("num_points_slider")["value"] = parseInt(document.getElementById("num_points_slider")["value"]) + 1;
-	updateSquaresSliderLabel(document.getElementById("num_points_slider")["value"]);
+	updatePointsSliderLabel(document.getElementById("num_points_slider")["value"]);
 }
 
 /*
@@ -46,8 +48,8 @@ function sliderIncrement() {
 }
 */
 
-let num_points = 100;
-let num_squares = 5;
+let num_points = 50;
+let num_squares = 10;
 let square_side = 0.05;	// percenage of canvas side length
 
 
@@ -190,7 +192,7 @@ function getCanvasArea() {
 
 function setUpCanvas() {
 	canvas = document.getElementById("disp") as HTMLCanvasElement;
-	canvas.height = 0.75 * Math.min(window.innerHeight, window.innerWidth);
+	canvas.height = 0.60 * Math.min(window.innerHeight, window.innerWidth);
 	canvas.width = canvas.height;
 	ctx = canvas.getContext("2d");
 	//ctx.fillStyle="blue";
@@ -232,10 +234,15 @@ function updatePlot() {
 	  */
 }
 
-window.onload = window.onresize = function() {
+function runAndDisplayAll() {
 	setUpCanvas();
 	startSimulation();
 	drawAll();
 	updatePlot();
+	document.getElementById("run_button")["disabled"] = true;
+}
+
+window.onload = window.onresize = function() {
+	runAndDisplayAll();
 }
 
