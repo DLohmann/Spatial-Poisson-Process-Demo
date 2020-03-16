@@ -3,14 +3,14 @@
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
 var slider = document.getElementById("num_squares_slider");
-var slider_value_label = document.getElementById("slider_val_label");
+var slider_value_label = document.getElementById("squares_slider_val_label");
 //slider_value_label.innerHTML = slider.value;
 //document.getElementById("slider_val_label").innerHTML = slider.value;
 //updateSliderLabel(slider.value);
 
 // numSquares slider.
 function updateSquaresSliderLabel(x: string) {
-	document.getElementById("slider_val_label").innerHTML = x;
+	document.getElementById("squares_slider_val_label").innerHTML = x;
 	num_squares = parseInt(x);
 	// TODO: Add a button to re-run simulation when the number of points or squares changes. After it is run, the button will be greyed out. If numSquares or numPoints changes, then the button will be un-greyed and clickable to run simulation.
 }
@@ -26,16 +26,16 @@ function squaresSliderIncrement() {
 
 // numPoints slider.
 function updatePointsSliderLabel(x: string) {
-	document.getElementById("slider_val_label").innerHTML = x;
+	document.getElementById("points_slider_val_label").innerHTML = x;
 	num_points = parseInt(x);
 }
 function pointsSliderDecrement() {
-	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) - 1;
-	updateSquaresSliderLabel(document.getElementById("num_squares_slider")["value"]);
+	document.getElementById("num_points_slider")["value"] = parseInt(document.getElementById("num_points_slider")["value"]) - 1;
+	updateSquaresSliderLabel(document.getElementById("num_points_slider")["value"]);
 }
 function pointsSliderIncrement() {
-	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) + 1;
-	updateSquaresSliderLabel(document.getElementById("num_squares_slider")["value"]);
+	document.getElementById("num_points_slider")["value"] = parseInt(document.getElementById("num_points_slider")["value"]) + 1;
+	updateSquaresSliderLabel(document.getElementById("num_points_slider")["value"]);
 }
 
 /*

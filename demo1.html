@@ -15,15 +15,11 @@
 		<span id="box"></span>
 		<script src="demo1.js"></script>
 		
-		<!--TODO: Get ticks to appear on slider, or the number to appear at the slider-->
+		<!--Num Squares Slider-->
 		<p align="center">
-			<!--
-			<h3 class="squareslabel"> Squares: </h3>
-			<p id="slider_val_label">X</p>
-			-->
 			<label for="num_squares_slider">
 				Squares: 
-				 <span class="value" id="slider_val_label">50</span>
+				 <span class="value" id="squares_slider_val_label">50</span>
 			</label>
 			<div class="slidecontainer" align="center">
 				<datalist id="ticks">
@@ -36,6 +32,26 @@
 				<input type="button" value="-" onclick="squaresSliderDecrement()"> 
 				0 <input type="range" min="0" max="100" value="50" class="slider" id="num_squares_slider" list="ticks" onchange="updateSquaresSliderLabel(this.value)"> 100 
 				<input type="button" value="+" onclick="squaresSliderIncrement()">
+			</div>
+		</p>
+		
+		<!--Num Points Slider-->
+		<p align="center">
+			<label for="num_points_slider">
+				Points: 
+					<span class="value" id="points_slider_val_label">50</span>
+			</label>
+			<div class="slidecontainer" align="center">
+				<datalist id="ticks">
+					<option value="0"></option>
+					<option value="25"></option>
+					<option value="50"></option>
+					<option value="75"></option>
+					<option value="100"></option>
+				</datalist>
+				<input type="button" value="-" onclick="pointsSliderDecrement()"> 
+				0 <input type="range" min="0" max="100" value="50" class="slider" id="num_points_slider" list="ticks" onchange="updatePointsSliderLabel(this.value)"> 100 
+				<input type="button" value="+" onclick="pointsSliderIncrement()">
 			</div>
 		</p>
 		
