@@ -2,10 +2,34 @@
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
+var slider = document.getElementById("num_squares_slider");
+var slider_value_label = document.getElementById("slider_val_label");
+//slider_value_label.innerHTML = slider.value;
+//document.getElementById("slider_val_label").innerHTML = slider.value;
+//updateSliderLabel(slider.value);
+
+// Display slider value
+function updateSliderLabel(x: string) {
+	//slider_value_label.innerHTML = x;
+	document.getElementById("slider_val_label").innerHTML = x;
+}
+function sliderDecrement() {
+	/*
+	document.getElementById("slider_val_label").innerHTML = Math.max(0, parseInt(document.getElementById("slider_val_label").innerHTML) - 1).toString();*/
+	//document.f.num_squares_slider.value = parseInt(document.f.num_squares_slider.value) - 1;
+
+	//document.getElementById("num_squares_slider").value = (document.getElementById("num_squares_slider") as any).value - 1;
+	document.getElementById("num_squares_slider")["value"] -= 1;
+}
+function sliderIncrement() {
+	// TODO: Use max and min to ensure slider stays within bounds.
+}
+
 
 let num_points = 100;
 let num_squares = 5;
 let square_side = 0.05;	// percenage of canvas side length
+
 
 function greeter(person) {
 	return "Hello " + person + "!";

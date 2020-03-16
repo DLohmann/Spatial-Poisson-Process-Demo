@@ -26,4 +26,8 @@ Same thing, but draw the points first, and then randomly place the square.
 ### Useful links:
 - Typescript basics [tutorial](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
 - Monte Carlo animation [example](https://codereview.stackexchange.com/questions/216614/monte-carlo-pi-animation?rq=1).
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
+- https://www.w3schools.com/howto/howto_js_rangeslider.asp
+- https://www.bauer.uh.edu/parks/slider.htm
+- 
 

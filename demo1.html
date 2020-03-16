@@ -15,18 +15,27 @@
 		<span id="box"></span>
 		<script src="demo1.js"></script>
 		
-		<!--TODO: Get ticks to appear on slider, or the number to appear at the slider-->>
+		<!--TODO: Get ticks to appear on slider, or the number to appear at the slider-->
 		<p align="center">
+			<!--
+			<h3 class="squareslabel"> Squares: </h3>
+			<p id="slider_val_label">X</p>
+			-->
+			<label for="num_squares_slider">
+				Squares: 
+				 <span class="value" id="slider_val_label">X</span>
+			</label>
 			<div class="slidecontainer" align="center">
-				<h3 class="squareslabel"> Squares: </h3>
 				<datalist id="ticks">
-					<option value="0" label="0"></option>
+					<option value="0"></option>
 					<option value="25"></option>
-					<option value="50" label="50"></option>
+					<option value="50"></option>
 					<option value="75"></option>
-					<option value="100" label="100"></option>
+					<option value="100"></option>
 				</datalist>
-				<input type="range" min="0" max="100" value="50" class="slider" id="numSquaresSlider" list="ticks">
+				<input type="button" value="-" onclick="sliderDecrement()"> 
+				0 <input type="range" min="0" max="100" value="50" class="slider" id="num_squares_slider" list="ticks" onchange="updateSliderLabel(this.value)" > 100 
+				<input type="button" value="+" onclick="sliderIncrement()">
 			</div>
 		</p>
 		
