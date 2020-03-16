@@ -8,23 +8,43 @@ var slider_value_label = document.getElementById("slider_val_label");
 //document.getElementById("slider_val_label").innerHTML = slider.value;
 //updateSliderLabel(slider.value);
 
-// Display slider value
-function updateSliderLabel(x: string) {
-	//slider_value_label.innerHTML = x;
+// numSquares slider.
+function updateSquaresSliderLabel(x: string) {
 	document.getElementById("slider_val_label").innerHTML = x;
+	num_squares = parseInt(x);
+	// TODO: Add a button to re-run simulation when the number of points or squares changes. After it is run, the button will be greyed out. If numSquares or numPoints changes, then the button will be un-greyed and clickable to run simulation.
 }
-function sliderDecrement() {
-	/*
-	document.getElementById("slider_val_label").innerHTML = Math.max(0, parseInt(document.getElementById("slider_val_label").innerHTML) - 1).toString();*/
-	//document.f.num_squares_slider.value = parseInt(document.f.num_squares_slider.value) - 1;
+function squaresSliderDecrement() {
+	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) - 1;
+	updateSquaresSliderLabel(document.getElementById("num_squares_slider")["value"]);
+}
+function squaresSliderIncrement() {
+	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) + 1;
+	updateSquaresSliderLabel(document.getElementById("num_squares_slider")["value"]);
+}
 
-	//document.getElementById("num_squares_slider").value = (document.getElementById("num_squares_slider") as any).value - 1;
-	document.getElementById("num_squares_slider")["value"] -= 1;
+
+// numPoints slider.
+function updatePointsSliderLabel(x: string) {
+	document.getElementById("slider_val_label").innerHTML = x;
+	num_points = parseInt(x);
 }
+function pointsSliderDecrement() {
+	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) - 1;
+	updateSquaresSliderLabel(document.getElementById("num_squares_slider")["value"]);
+}
+function pointsSliderIncrement() {
+	document.getElementById("num_squares_slider")["value"] = parseInt(document.getElementById("num_squares_slider")["value"]) + 1;
+	updateSquaresSliderLabel(document.getElementById("num_squares_slider")["value"]);
+}
+
+/*
 function sliderIncrement() {
-	// TODO: Use max and min to ensure slider stays within bounds.
+	document.getElementById("num_squares_slider")["value"] += 1;
+	updateSliderLabel(document.getElementById("num_squares_slider")["value"]);
+	console.log("slider increment called");
 }
-
+*/
 
 let num_points = 100;
 let num_squares = 5;

@@ -29,5 +29,5 @@ Same thing, but draw the points first, and then randomly place the square.
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
 - https://www.w3schools.com/howto/howto_js_rangeslider.asp
 - https://www.bauer.uh.edu/parks/slider.htm
-- 
+- Good example of slider usage: https://playground.tensorflow.org
 
