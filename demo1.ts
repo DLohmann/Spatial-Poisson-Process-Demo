@@ -63,13 +63,28 @@ class Point {
 	}
 	draw() {
 		ctx.fillStyle = "red";
-		ctx.fillRect(this.x, this.y, 1, 1);
+		ctx.fillRect(this.x, this.y, 3, 3);
 	}
 }
 var points:Point[];
 
+// TODO: Parallelize this function if there are many points.
 function createPoints () {
-	// Choose the number of points well.
+	console.log("Generating points.");
+	for (var i: number = 0; i < num_points; i++) {
+		// TODO: check that this won't take forever.
+		var x:number = Math.random()*canvas.width *(1.0 - square_side);
+		var y:number = Math.random()*canvas.height*(1.0 - square_side);
+		squares.forEach(function(square) {
+			if (square.contains(x, y)) {
+				// TODO: If the condition that squares do not overlap is set, then make sure to early break here if a point is in a square, for efficiency.
+				square.points_contained += 1;
+			}
+		});
+		
+		points.push(new Point(x, y));
+	}
+	
 }
 
 class Square {
@@ -151,7 +166,7 @@ function createSquares () {
 	for (var i = 0; i < num_squares; i++) {
 		var x:number;
 		var y:number;
-		// TODO: check that this won't look forever.
+		// TODO: check that this won't take forever.
 		do {
 			// Ensure square is within canvas bounds.
 			x = Math.random()*canvas.width *(1.0 - square_side);
@@ -171,11 +186,12 @@ function startSimulation() {
 	squares = Array();
 	points = Array();
 
-	// Create random points.
-	
 	// Create random squares, and ensure they do not overlap.
 	createSquares();
 
+	// Create random points.
+	createPoints();
+	
 	// Determine if each point is inside square.
 	
 	// Count points inside square, and record.
@@ -203,12 +219,15 @@ function drawAll() {
 	// Clear current drawing
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	// Draw all points.
 	// Draw all squares.
 	squares.forEach(function(square){
 		square.draw();
 	});
-	// Update point hit count.
+	// Draw all points.
+	points.forEach(function(point){
+		point.draw();
+	});
+	
 	// Update probability (of a single rectange getting hit or a single point hitting?)
 	//let probability_hit
 }
@@ -218,6 +237,9 @@ function updatePlot() {
 	// update the plot on webpage to show how Poisson distribution is approximated.
 	// Plot next to actual Poisson plot.
 	// Also log to console.
+	
+	// TODO: write function to print command line plot
+	
 	/*
 	const data: Plotly.BarData[] = [
 		{
