@@ -50,12 +50,9 @@ function sliderIncrement() {
 
 let num_points = 50;
 let num_squares = 10;
+// TODO: Refactor so square_side is absolute number of pixels, not percentage of side length.
 let square_side = 0.05;	// percenage of canvas side length
 
-
-function greeter(person) {
-	return "Hello " + person + "!";
-}
 
 class Point {
 	x: any;
@@ -135,7 +132,7 @@ function squareOverlapsSquare(x:number, y:number) {
 	var overlaps: boolean = false;
 	console.log("\tTesting square (" + x + ", " + y + ").");
 	squares.forEach(function(square){
-		if (square.contains(x, y) || square.contains(x + square_side, y) || square.contains(x, y + square_side) || square.contains(x + square_side, y + square_side)) {
+		if (square.contains(x, y) || square.contains(x + square_side*canvas.width, y) || square.contains(x, y + square_side*canvas.width) || square.contains(x + square_side*canvas.width, y + square_side*canvas.width)) {
 			console.log("\t\tOops! square (" + x + ", " + y + ") overlaps!");
 			i = i + 1;
 			overlaps = true;
