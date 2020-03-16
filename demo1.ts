@@ -232,13 +232,33 @@ function drawAll() {
 	//let probability_hit
 }
 
+// TODO: Allow these to be bucketed using some sort of parameter for the width of buckets / number of buckets
+function getHitCounts() {
+	let count_histogram: Map<number, number> = new Map<number, number>();
+	squares.forEach(function(square){
+		let hits: number = square.points_contained;
+		if (count_histogram.has(hits)) {
+			count_histogram[hits] += 1;
+		} else {
+			count_histogram[hits] = 1;
+		}
+	});
+	return count_histogram;
+}
+
 function updatePlot() {
 	console.log("Update plot");
 	// update the plot on webpage to show how Poisson distribution is approximated.
 	// Plot next to actual Poisson plot.
 	// Also log to console.
 	
-	// TODO: write function to print command line plot
+	
+	// TODO: write function to print histogram to command line
+	let count_histogram: Map<number, number> = getHitCounts();
+	console.log("Printing counts:")
+	count_histogram.forEach(function(count){
+		console.log("\t" + count);
+	});
 	
 	/*
 	const data: Plotly.BarData[] = [
