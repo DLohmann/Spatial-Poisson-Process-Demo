@@ -159,6 +159,8 @@ function squareOverlapsSquare(x:number, y:number) {
 	return overlaps;
 }
 
+// TODO: Add a button that controls whether squares are allowed to overlap or not.
+
 function createSquares () {
 	// Ensure squares do not overlap.
 	console.log("Generating squares (side = " + square_side*canvas.width + ").");
