@@ -238,11 +238,13 @@ function getHitCounts() {
 	squares.forEach(function(square){
 		let hits: number = square.points_contained;
 		if (count_histogram.has(hits)) {
-			count_histogram[hits] += 1;
+			count_histogram.set(hits, count_histogram.get(hits) + 1);
 		} else {
-			count_histogram[hits] = 1;
+			count_histogram.set(hits, 1);
 		}
+		console.log("\t\tCounted " + hits + " points for a square.");
 	});
+	console.log("Recorded " + count_histogram.size + " unique counts for all " + squares.length + " squares.");
 	return count_histogram;
 }
 
@@ -255,9 +257,12 @@ function updatePlot() {
 	
 	// TODO: write function to print histogram to command line
 	let count_histogram: Map<number, number> = getHitCounts();
-	console.log("Printing counts:")
-	count_histogram.forEach(function(count){
-		console.log("\t" + count);
+	console.log("Printing all " + count_histogram.size + " counts:")
+	//let max_bin: number = Math.max(Array.from(count_histogram.keys()));
+	let bins: Array<number> = Array.from(count_histogram.keys());
+	
+	bins.forEach(function(count){
+		console.log("\t" + count + ": " + count_histogram.get(count));
 	});
 	
 	/*
