@@ -12,7 +12,10 @@
 				Your browser does not support the HTML5 canvas tag.
 			</canvas>
 		</p>
+		
 		<span id="box"></span>
+		
+		<!--<script src="plotly-latest.min.js"></script>-->
 		<script src="demo1.js"></script>
 		
 		<!--Run Button-->
@@ -65,6 +68,16 @@
 		
 		
 		<!--TODO: Insert a plot here of the amount of times a square contains 1 point, 2 points, 3 points, etc.-->
-		<p align="center"><div id="histogram_plot"></div></p>
-    </body>
+		<p align="center"><div id="histogram_plot" style="width:600px;height:250px;text-align:center;"></div></p>
+	</body>
+	
+	<!--
+	<script>
+		PLOT = document.getElementById('histogram_plot');
+		Plotly.newPlot( PLOT, [{
+		x: [1, 2, 3, 4, 5],
+		y: [1, 2, 4, 8, 16] }], {
+		margin: { t: 0 } } );
+	</script>
+	-->
 </html>

@@ -2,7 +2,13 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "build"
+    "outDir": "build",
+    "baseUrl": ".",
+    "paths": {
+      "plotly.js": [
+        "../node_modules/plotly.js/lib/core.js"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",

@@ -8,9 +8,10 @@
     "plotly.js": "^1.52.2"
   },
   "devDependencies": {
+    "@types/node": "^10.0.3",
+    "@types/plotly.js": "^1.50.12",
     "gts": "^1.1.2",
-    "typescript": "~3.7.0",
-    "@types/node": "^10.0.3"
+    "typescript": "~3.7.0"
   },
   "scripts": {
     "test": "TestSpatialPoissonProcess",

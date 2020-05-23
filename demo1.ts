@@ -1,9 +1,11 @@
-//import * as Plotly from 'plotly.js';
+import * as Plotly from 'plotly.js';
+//import * as Plotly from 'plotly-latest.min.js';
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
 var slider = document.getElementById("num_squares_slider");
 var slider_value_label = document.getElementById("squares_slider_val_label");
+var HIST_PLOT = document.getElementById('histogram_plot');
 //slider_value_label.innerHTML = slider.value;
 //document.getElementById("slider_val_label").innerHTML = slider.value;
 //updateSliderLabel(slider.value);
@@ -267,6 +269,10 @@ function updatePlot() {
 		console.log("\t" + count + ": " + count_histogram.get(count));
 	});
 	
+	Plotly.newPlot( HIST_PLOT, [{
+		x: [1, 2, 3, 4, 5],
+		y: [1, 2, 4, 8, 16] }], {
+		margin: { t: 0 } } );
 	/*
 	const data: Plotly.BarData[] = [
 		{
