@@ -1,15 +1,18 @@
-import * as Plotly from 'plotly.js';
+//import * as Plotly from 'plotly.js';
 //import * as Plotly from 'plotly-latest.min.js';
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
 var slider = document.getElementById("num_squares_slider");
 var slider_value_label = document.getElementById("squares_slider_val_label");
-var HIST_PLOT = document.getElementById('histogram_plot');
 //slider_value_label.innerHTML = slider.value;
 //document.getElementById("slider_val_label").innerHTML = slider.value;
 //updateSliderLabel(slider.value);
 
+let num_points = 250;	// parseInt(document.getElementById("num_points_slider")["value"]);
+let num_squares = 50;	// parseInt(document.getElementById("num_squares_slider")["value"]);
+// TODO: Refactor so square_side is absolute number of pixels, not percentage of side length.
+let square_side = 0.05;	// percenage of canvas side length
 
 // numSquares slider.
 function updateSquaresSliderLabel(x: string) {
@@ -50,12 +53,6 @@ function sliderIncrement() {
 }
 */
 
-let num_points = 50;
-let num_squares = 10;
-// TODO: Refactor so square_side is absolute number of pixels, not percentage of side length.
-let square_side = 0.05;	// percenage of canvas side length
-
-
 class Point {
 	x: any;
 	y: any;
@@ -72,7 +69,7 @@ var points:Point[];
 
 // TODO: Parallelize this function if there are many points.
 function createPoints () {
-	console.log("Generating points.");
+	// console.log("Generating points.");
 	for (var i: number = 0; i < num_points; i++) {
 		// TODO: check that this won't take forever.
 		var x:number = Math.random()*canvas.width *(1.0 - square_side);
@@ -86,7 +83,7 @@ function createPoints () {
 		
 		points.push(new Point(x, y));
 	}
-	
+	console.log("num points = " + points.length);
 }
 
 class Square {
@@ -165,22 +162,22 @@ function squareOverlapsSquare(x:number, y:number) {
 
 function createSquares () {
 	// Ensure squares do not overlap.
-	console.log("Generating squares (side = " + square_side*canvas.width + ").");
+	// console.log("Generating squares (side = " + square_side*canvas.width + ").");
 	// Ensure square area and amount of squares is chosen well.
 	for (var i = 0; i < num_squares; i++) {
 		var x:number;
 		var y:number;
 		// TODO: check that this won't take forever.
-		do {
+		// do {
 			// Ensure square is within canvas bounds.
 			x = Math.random()*canvas.width *(1.0 - square_side);
 			y = Math.random()*canvas.height*(1.0 - square_side);
 			
 			// Ensure square does not overlap existing squares.
-		} while (squareOverlapsSquare(x, y));
-		// Enure square does not overlap with existing squares.
+		// } while (squareOverlapsSquare(x, y));
+		// Ensure square does not overlap with existing squares.
 		squares.push(new Square(x, y, square_side*canvas.width));
-		console.log("\tgenerated square " + i + " at (" + x + ", " + y + ")!");
+		// console.log("\tgenerated square " + i + " at (" + x + ", " + y + ")!");
 	}
 	console.log("num squares = " + squares.length);
 }
@@ -246,7 +243,7 @@ function getHitCounts() {
 		} else {
 			count_histogram.set(hits, 1);
 		}
-		console.log("\t\tCounted " + hits + " points for a square.");
+		// console.log("\t\tCounted " + hits + " points for a square.");
 	});
 	console.log("Recorded " + count_histogram.size + " unique counts for all " + squares.length + " squares.");
 	return count_histogram;
@@ -258,21 +255,65 @@ function updatePlot() {
 	// Plot next to actual Poisson plot.
 	// Also log to console.
 	
-	
 	// TODO: write function to print histogram to command line
 	let count_histogram: Map<number, number> = getHitCounts();
 	console.log("Printing all " + count_histogram.size + " counts:")
-	//let max_bin: number = Math.max(Array.from(count_histogram.keys()));
+	// let max_bin: number = Math.max(Array.from(count_histogram.keys()));
+	let max_bin: number =
+	 	Array.from(count_histogram.keys())
+			.reduce(function(previous, current, index, arr){return Math.max(previous, current)});
+	console.log("Max bin: " + max_bin);
+	
+	let x_plot_vals:Array<number> = Array.from(count_histogram.keys());
+	let y_plot_vals:Array<number> = Array.from(count_histogram.values());
 	let bins: Array<number> = Array.from(count_histogram.keys());
 	
 	bins.forEach(function(count){
 		console.log("\t" + count + ": " + count_histogram.get(count));
 	});
 	
-	Plotly.newPlot( HIST_PLOT, [{
-		x: [1, 2, 3, 4, 5],
-		y: [1, 2, 4, 8, 16] }], {
-		margin: { t: 0 } } );
+	var TESTER = document.getElementById('tester');
+	
+	// Plotly.newPlot( TESTER,
+	// 	Plotly.BarData[] = [
+	// 		{
+	// 			x:x_plot_vals, 
+	// 			y:y_plot_vals, 
+	// 			type:'bar'
+	// 		}
+	// 	]
+	// );
+	
+	var layout = {
+		title: 'Spatial Poisson Process Distrubution',
+		xaxis: {
+			title: 'Points in square'
+		},
+		yaxis: {
+			title: 'Number of squares'
+		}
+	};
+	var plot_data = [{ // data
+		x: x_plot_vals,
+		y: y_plot_vals,
+		type: 'bar'
+	}];
+	Plotly.newPlot( TESTER,
+		// plot_data,
+		// layout
+		
+		[
+			{
+				x: x_plot_vals,
+				y: y_plot_vals,
+				type: 'bar'
+			}
+		], 
+		layout
+		// { margin: { t: 0 } }
+	);
+	
+	
 	/*
 	const data: Plotly.BarData[] = [
 		{

@@ -4,9 +4,10 @@
     "rootDir": ".",
     "outDir": "build",
     "baseUrl": ".",
+    "module": "commonjs",
     "paths": {
       "plotly.js": [
-        "../node_modules/plotly.js/lib/core.js"
+        "node_modules/plotly.js/lib/core.js"
       ]
     }
   },

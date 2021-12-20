@@ -15,7 +15,7 @@
 		
 		<span id="box"></span>
 		
-		<!--<script src="plotly-latest.min.js"></script>-->
+		<script src="plotly-latest.min.js"></script>
 		<script src="demo1.js"></script>
 		
 		<!--Run Button-->
@@ -30,7 +30,7 @@
 		<p align="center">
 			<label for="num_squares_slider">
 				Squares: 
-				 <span class="value" id="squares_slider_val_label">10</span>
+				 <span class="value" id="squares_slider_val_label">100</span>
 			</label>
 			<div class="slidecontainer" align="center">
 				<datalist id="ticks">
@@ -41,7 +41,7 @@
 					<option value="100"></option>
 				</datalist>
 				<input type="button" value="-" onclick="squaresSliderDecrement()"> 
-				0 <input type="range" min="0" max="20" value="10" class="slider" id="num_squares_slider" list="ticks" onchange="updateSquaresSliderLabel(this.value)"> 20 
+				0 <input type="range" min="0" max="200" value="100" class="slider" id="num_squares_slider" list="ticks" onchange="updateSquaresSliderLabel(this.value)"> 200 
 				<input type="button" value="+" onclick="squaresSliderIncrement()">
 			</div>
 		</p>
@@ -50,7 +50,7 @@
 		<p align="center">
 			<label for="num_points_slider">
 				Points: 
-					<span class="value" id="points_slider_val_label">50</span>
+					<span class="value" id="points_slider_val_label">500</span>
 			</label>
 			<div class="slidecontainer" align="center">
 				<datalist id="ticks">
@@ -61,19 +61,21 @@
 					<option value="100"></option>
 				</datalist>
 				<input type="button" value="-" onclick="pointsSliderDecrement()"> 
-				0 <input type="range" min="0" max="100" value="50" class="slider" id="num_points_slider" list="ticks" onchange="updatePointsSliderLabel(this.value)"> 100 
+				0 <input type="range" min="0" max="1000" value="500" class="slider" id="num_points_slider" list="ticks" onchange="updatePointsSliderLabel(this.value)"> 1000 
 				<input type="button" value="+" onclick="pointsSliderIncrement()">
 			</div>
 		</p>
 		
 		
 		<!--TODO: Insert a plot here of the amount of times a square contains 1 point, 2 points, 3 points, etc.-->
-		<p align="center"><div id="histogram_plot" style="width:600px;height:250px;text-align:center;"></div></p>
+		<p align="center"><div id="tester" style="width:600px;height:250px;text-align:center;" align="center"></div></p>
 	</body>
 	
 	<!--
 	<script>
-		PLOT = document.getElementById('histogram_plot');
+		PLOT = document.getElementById('
+		
+		');
 		Plotly.newPlot( PLOT, [{
 		x: [1, 2, 3, 4, 5],
 		y: [1, 2, 4, 8, 16] }], {
