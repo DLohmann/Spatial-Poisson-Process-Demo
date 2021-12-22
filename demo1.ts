@@ -262,7 +262,8 @@ function getPoissonPrediction(num_bins : number) {
 	let square_area: number = (square_side * canvas.width)**2;
 	let expected_lambda:number = num_points * (square_area / canvas_area);
 	let expected_histogram: Map<number, number> = new Map<number, number>();
-	let e_constant: number = 2.7182818284590452353602874713527;
+	
+	console.log("Expected lambda: ", expected_lambda);
 	
 	for(var i: number = 0; i < num_bins; i++) {
 		// P(k) = exp(-1 * lambda *t) * (((lambda * t)**k)/(k!)), t = time,(for spatial process, t is the size of the square, which here is constant, so 1), k = bin. 
@@ -286,8 +287,8 @@ function updatePlot() {
 			.reduce(function(previous, current, index, arr){return Math.max(previous, current)});
 	console.log("Max bin: " + max_bin);
 	
-	let x_plot_vals:Array<number> = Array.from(count_histogram.keys());
-	let y_plot_vals:Array<number> = Array.from(count_histogram.values());
+	let x_plot_data:Array<number> = Array.from(count_histogram.keys());
+	let y_plot_data:Array<number> = Array.from(count_histogram.values());
 	let bins: Array<number> = Array.from(count_histogram.keys());
 	
 	bins.forEach(function(count){
@@ -295,14 +296,16 @@ function updatePlot() {
 	});
 	
 	let expected_histogram: Map<number, number> = getPoissonPrediction(/*num_bins = */ max_bin + 1);
+	let x_plot_expectation:Array<number> = Array.from(expected_histogram.keys());
+	let y_plot_expectation:Array<number> = Array.from(expected_histogram.values()); 
 	
 	var TESTER = document.getElementById('tester');
 	
 	// Plotly.newPlot( TESTER,
 	// 	Plotly.BarData[] = [
 	// 		{
-	// 			x:x_plot_vals, 
-	// 			y:y_plot_vals, 
+	// 			x:x_plot_data, 
+	// 			y:y_plot_data, 
 	// 			type:'bar'
 	// 		}
 	// 	]
@@ -318,8 +321,8 @@ function updatePlot() {
 		}
 	};
 	var plot_data = [{ // data
-		x: x_plot_vals,
-		y: y_plot_vals,
+		x: x_plot_data,
+		y: y_plot_data,
 		type: 'bar'
 	}];
 	Plotly.newPlot( TESTER,
@@ -328,8 +331,15 @@ function updatePlot() {
 		
 		[
 			{
-				x: x_plot_vals,
-				y: y_plot_vals,
+				name: "Points per square",
+				x: x_plot_data,
+				y: y_plot_data,
+				type: 'bar'
+			},
+			{
+				name: "Poisson Expectation",
+				x: x_plot_expectation,
+				y: y_plot_expectation,
 				type: 'bar'
 			}
 		], 
@@ -359,7 +369,7 @@ function runAndDisplayAll() {
 	document.getElementById("run_button")["disabled"] = true;
 }
 
-// window.onload = window.onresize = function() {
-// 	runAndDisplayAll();
-// }
+window.onload = /*window.onresize =*/ function() {
+	runAndDisplayAll();
+}
 
