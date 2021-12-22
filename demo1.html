@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>Spatial Poisson Process</title>
-		<!--<script src="plotly-latest.min.js"></script>-->
 		<link rel="stylesheet" href="styles.css">
 	</head>
     <body>
@@ -30,18 +29,18 @@
 		<p align="center">
 			<label for="num_squares_slider">
 				Squares: 
-				 <span class="value" id="squares_slider_val_label">100</span>
+				 <span class="value" id="squares_slider_val_label">200</span>
 			</label>
 			<div class="slidecontainer" align="center">
-				<datalist id="ticks">
+				<!-- <datalist id="ticks">
 					<option value="0"></option>
 					<option value="25"></option>
 					<option value="50"></option>
 					<option value="75"></option>
 					<option value="100"></option>
-				</datalist>
+				</datalist> -->
 				<input type="button" value="-" onclick="squaresSliderDecrement()"> 
-				0 <input type="range" min="0" max="200" value="100" class="slider" id="num_squares_slider" list="ticks" onchange="updateSquaresSliderLabel(this.value)"> 200 
+				0 <input type="range" min="0" max="400" value="200" class="slider" id="num_squares_slider"  onchange="updateSquaresSliderLabel(this.value)"> 400 
 				<input type="button" value="+" onclick="squaresSliderIncrement()">
 			</div>
 		</p>
@@ -50,25 +49,25 @@
 		<p align="center">
 			<label for="num_points_slider">
 				Points: 
-					<span class="value" id="points_slider_val_label">500</span>
+					<span class="value" id="points_slider_val_label">1000</span>
 			</label>
 			<div class="slidecontainer" align="center">
-				<datalist id="ticks">
+				<!-- <datalist id="ticks">
 					<option value="0"></option>
 					<option value="25"></option>
 					<option value="50"></option>
 					<option value="75"></option>
 					<option value="100"></option>
-				</datalist>
+				</datalist> -->
 				<input type="button" value="-" onclick="pointsSliderDecrement()"> 
-				0 <input type="range" min="0" max="1000" value="500" class="slider" id="num_points_slider" list="ticks" onchange="updatePointsSliderLabel(this.value)"> 1000 
+				0 <input type="range" min="0" max="2000" value="1000" class="slider" id="num_points_slider" onchange="updatePointsSliderLabel(this.value)"> 2000 
 				<input type="button" value="+" onclick="pointsSliderIncrement()">
 			</div>
 		</p>
 		
 		
 		<!--TODO: Insert a plot here of the amount of times a square contains 1 point, 2 points, 3 points, etc.-->
-		<p align="center"><div id="tester" style="width:600px;height:250px;text-align:center;" align="center"></div></p>
+		<div align="center"><div id="tester" style="width:600px;height:250px;text-align:center;" align="center"></div></div>
 	</body>
 	
 	<!--

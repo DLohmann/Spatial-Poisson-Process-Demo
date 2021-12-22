@@ -9,10 +9,10 @@ var slider_value_label = document.getElementById("squares_slider_val_label");
 //document.getElementById("slider_val_label").innerHTML = slider.value;
 //updateSliderLabel(slider.value);
 
-let num_points = 250;	// parseInt(document.getElementById("num_points_slider")["value"]);
-let num_squares = 50;	// parseInt(document.getElementById("num_squares_slider")["value"]);
+let num_points = 1000;	// parseInt(document.getElementById("num_points_slider")["value"]);
+let num_squares = 200;	// parseInt(document.getElementById("num_squares_slider")["value"]);
 // TODO: Refactor so square_side is absolute number of pixels, not percentage of side length.
-let square_side = 0.05;	// percenage of canvas side length
+let square_side = 0.05;	// percentage of canvas side length
 
 // numSquares slider.
 function updateSquaresSliderLabel(x: string) {
@@ -198,10 +198,6 @@ function startSimulation() {
 	// Count points inside square, and record.
 }
 
-function getCanvasArea() {
-	return canvas.height * canvas.width;
-}
-
 //document.body.textContent = greeter(user);
 
 function setUpCanvas() {
@@ -249,6 +245,32 @@ function getHitCounts() {
 	return count_histogram;
 }
 
+function factorial(x: number): number {
+	var fact: number = x > 0? x : 1;
+	var i = x - 1;
+	while (i > 1) {
+		fact = fact * i
+		i--;
+	}
+	return fact;
+}
+
+// TODO: Plot the Poisson prediction along with the results.
+function getPoissonPrediction(num_bins : number) {
+	
+	let canvas_area: number = canvas.height * canvas.width;
+	let square_area: number = (square_side * canvas.width)**2;
+	let expected_lambda:number = num_points * (square_area / canvas_area);
+	let expected_histogram: Map<number, number> = new Map<number, number>();
+	let e_constant: number = 2.7182818284590452353602874713527;
+	
+	for(var i: number = 0; i < num_bins; i++) {
+		// P(k) = exp(-1 * lambda *t) * (((lambda * t)**k)/(k!)), t = time,(for spatial process, t is the size of the square, which here is constant, so 1), k = bin. 
+		expected_histogram.set(i, Math.exp(-1 * expected_lambda) * (expected_lambda * i) / factorial(i));
+	}
+	return expected_histogram;
+}
+
 function updatePlot() {
 	console.log("Update plot");
 	// update the plot on webpage to show how Poisson distribution is approximated.
@@ -271,6 +293,8 @@ function updatePlot() {
 	bins.forEach(function(count){
 		console.log("\t" + count + ": " + count_histogram.get(count));
 	});
+	
+	let expected_histogram: Map<number, number> = getPoissonPrediction(/*num_bins = */ max_bin + 1);
 	
 	var TESTER = document.getElementById('tester');
 	
@@ -335,7 +359,7 @@ function runAndDisplayAll() {
 	document.getElementById("run_button")["disabled"] = true;
 }
 
-window.onload = window.onresize = function() {
-	runAndDisplayAll();
-}
+// window.onload = window.onresize = function() {
+// 	runAndDisplayAll();
+// }
 
