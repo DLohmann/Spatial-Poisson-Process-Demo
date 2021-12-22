@@ -7,13 +7,11 @@ var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
 var slider = document.getElementById("num_squares_slider");
 var slider_value_label = document.getElementById("squares_slider_val_label");
-//slider_value_label.innerHTML = slider.value;
-//document.getElementById("slider_val_label").innerHTML = slider.value;
 
-let num_points = 1000;	// parseInt(document.getElementById("num_points_slider")["value"]);
-let num_squares = 200;	// parseInt(document.getElementById("num_squares_slider")["value"]);
+let num_points: number = 1000;
+let num_squares: number = 200;
 // TODO: Refactor so square_side is absolute number of pixels, not percentage of side length.
-let square_side = 0.05;	// percentage of canvas side length
+let square_side: number = 0.05;	// percentage of canvas side length
 
 // numSquares slider.
 function updateSquaresSliderLabel(x: string) {
@@ -48,7 +46,7 @@ function pointsSliderIncrement() {
 class Point {
 	x: any;
 	y: any;
-	constructor(x, y) {
+	constructor(x: number, y: number) {
 		this.x = x;
 		this.y = y;
 	}
@@ -90,14 +88,11 @@ class Square {
 		this.y = y;
 		this.side = side;
 	}
-	getArea() {
+	getArea(): number {
 		return this.side * this.side;
 	}
-		contains(x: number, y: number): boolean {
+	contains(x: number, y: number): boolean {
 		return (this.x <= x && x <= this.x + this.side) && (this.y <= y && y <= this.y + this.side);
-	}
-	containsPoint(point: Point): boolean {
-		return this.contains(point.x, point.y);
 	}
 	draw() {
 		// Chooses random color. 3 rgb colors mean 3 hex values, meaning 3*8 bits.
@@ -190,9 +185,6 @@ function drawAll() {
 	points.forEach(function(point){
 		point.draw();
 	});
-	
-	// Update probability (of a single rectange getting hit or a single point hitting?)
-	//let probability_hit
 }
 
 // TODO: Allow these to be bucketed using some sort of parameter for the width of buckets / number of buckets
@@ -222,7 +214,7 @@ function factorial(x: number): number {
 }
 
 function getPoissonPrediction(num_bins : number): Map<number, number> {
-	
+	// Calculates lambda, the expected number of hits per square.
 	let canvas_area: number = canvas.height * canvas.width;
 	let square_area: number = (square_side * canvas.width)**2;
 	let expected_lambda:number = num_points * (square_area / canvas_area);
@@ -239,12 +231,8 @@ function getPoissonPrediction(num_bins : number): Map<number, number> {
 	return expected_histogram;
 }
 
+// Updates the plot on the webpage to show how the Poisson distribution is approximated.
 function updatePlot() {
-	console.log("Update plot");
-	// update the plot on webpage to show how Poisson distribution is approximated.
-	// Plot next to actual Poisson plot.
-	// Also log to console.
-	
 	// TODO: write function to print histogram to command line
 	let count_histogram: Map<number, number> = getHitCounts();
 	console.log("Printing all " + count_histogram.size + " counts:")
@@ -280,11 +268,6 @@ function updatePlot() {
 			side: 'top'
 		}
 	};
-	var plot_data = [{
-		x: x_plot_data,
-		y: y_plot_data,
-		type: 'bar'
-	}];
 	Plotly.newPlot( TESTER,
 		[
 			{
@@ -313,7 +296,6 @@ function runAndDisplayAll() {
 	document.getElementById("run_button")["disabled"] = true;
 }
 
-window.onload = /*window.onresize =*/ function() {
+window.onload = function() {
 	runAndDisplayAll();
 }
-
