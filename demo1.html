@@ -19,12 +19,10 @@
 		
 		<!--Run Button-->
 		<p align="center">
-			<!--TODO: Make this button look like a fancier play button.-->
 			<button title="Run" id="run_button" onclick="runAndDisplayAll()" disabled>
 				Run
 			</button>
 		</p>
-		<!--TODO: Make the squares slider go from 0 to 50, and the points slider from 0 to 400, with the initial squares and initial points set to the center of each range (ie 25 and 200 respectively)-->
 		<!--Num Squares Slider-->
 		<p align="center">
 			<label for="num_squares_slider">
@@ -32,13 +30,6 @@
 				 <span class="value" id="squares_slider_val_label">200</span>
 			</label>
 			<div class="slidecontainer" align="center">
-				<!-- <datalist id="ticks">
-					<option value="0"></option>
-					<option value="25"></option>
-					<option value="50"></option>
-					<option value="75"></option>
-					<option value="100"></option>
-				</datalist> -->
 				<input type="button" value="-" onclick="squaresSliderDecrement()"> 
 				0 <input type="range" min="0" max="400" value="200" class="slider" id="num_squares_slider"  onchange="updateSquaresSliderLabel(this.value)"> 400 
 				<input type="button" value="+" onclick="squaresSliderIncrement()">
@@ -52,33 +43,12 @@
 					<span class="value" id="points_slider_val_label">1000</span>
 			</label>
 			<div class="slidecontainer" align="center">
-				<!-- <datalist id="ticks">
-					<option value="0"></option>
-					<option value="25"></option>
-					<option value="50"></option>
-					<option value="75"></option>
-					<option value="100"></option>
-				</datalist> -->
 				<input type="button" value="-" onclick="pointsSliderDecrement()"> 
 				0 <input type="range" min="0" max="2000" value="1000" class="slider" id="num_points_slider" onchange="updatePointsSliderLabel(this.value)"> 2000 
 				<input type="button" value="+" onclick="pointsSliderIncrement()">
 			</div>
 		</p>
 		
-		
-		<!--TODO: Insert a plot here of the amount of times a square contains 1 point, 2 points, 3 points, etc.-->
 		<div align="center"><div id="tester" style="width:600px;height:250px;text-align:center;" align="center"></div></div>
 	</body>
-	
-	<!--
-	<script>
-		PLOT = document.getElementById('
-		
-		');
-		Plotly.newPlot( PLOT, [{
-		x: [1, 2, 3, 4, 5],
-		y: [1, 2, 4, 8, 16] }], {
-		margin: { t: 0 } } );
-	</script>
-	-->
 </html>

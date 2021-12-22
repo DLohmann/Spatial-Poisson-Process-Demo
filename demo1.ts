@@ -1,5 +1,7 @@
-//import * as Plotly from 'plotly.js';
-//import * as Plotly from 'plotly-latest.min.js';
+/**
+ * @fileoverview Simulation of a spatial Poisson point process. This demonstration randomly generates squares on the HTML canvas, and randomly places points on the canvas. The script counts the number of points in each square, and plots the distribution of the points per square, to indicate the amount of squares with 0 points, 1 point, 2 points, etc.
+ */
+
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
@@ -141,22 +143,22 @@ Generating squares (side = 29.450000000000003).
 	generated square 4 at (167.52953156146978, 320.05270148552967)!
 num squares = 5
 */
-function squareOverlapsSquare(x:number, y:number) {
-	var i = 0;
-	var overlaps: boolean = false;
-	console.log("\tTesting square (" + x + ", " + y + ").");
-	squares.forEach(function(square){
-		if (square.contains(x, y) || square.contains(x + square_side*canvas.width, y) || square.contains(x, y + square_side*canvas.width) || square.contains(x + square_side*canvas.width, y + square_side*canvas.width)) {
-			console.log("\t\tOops! square (" + x + ", " + y + ") overlaps!");
-			i = i + 1;
-			overlaps = true;
-			return;
-		}
-		console.log("\t\tDoes not ovelap with square " + i + " at (" + square.x + ", " + square.y + ").");
-		i = i + 1;
-	});
-	return overlaps;
-}
+// function squareOverlapsSquare(x:number, y:number) {
+// 	var i = 0;
+// 	var overlaps: boolean = false;
+// 	console.log("\tTesting square (" + x + ", " + y + ").");
+// 	squares.forEach(function(square){
+// 		if (square.contains(x, y) || square.contains(x + square_side*canvas.width, y) || square.contains(x, y + square_side*canvas.width) || square.contains(x + square_side*canvas.width, y + square_side*canvas.width)) {
+// 			console.log("\t\tOops! square (" + x + ", " + y + ") overlaps!");
+// 			i = i + 1;
+// 			overlaps = true;
+// 			return;
+// 		}
+// 		console.log("\t\tDoes not ovelap with square " + i + " at (" + square.x + ", " + square.y + ").");
+// 		i = i + 1;
+// 	});
+// 	return overlaps;
+// }
 
 // TODO: Add a button that controls whether squares are allowed to overlap or not.
 
@@ -263,11 +265,13 @@ function getPoissonPrediction(num_bins : number) {
 	let expected_lambda:number = num_points * (square_area / canvas_area);
 	let expected_histogram: Map<number, number> = new Map<number, number>();
 	
-	console.log("Expected lambda: ", expected_lambda);
+	console.log("canvas_area: ", canvas_area);
+	console.log("square_area: ", square_area);
+	console.log("expected_lambda: ", expected_lambda);
 	
 	for(var i: number = 0; i < num_bins; i++) {
 		// P(k) = exp(-1 * lambda *t) * (((lambda * t)**k)/(k!)), t = time,(for spatial process, t is the size of the square, which here is constant, so 1), k = bin. 
-		expected_histogram.set(i, Math.exp(-1 * expected_lambda) * (expected_lambda * i) / factorial(i));
+		expected_histogram.set(i, num_squares * Math.exp(-1 * expected_lambda) * Math.pow(expected_lambda, i) / factorial(i));
 	}
 	return expected_histogram;
 }
@@ -337,7 +341,7 @@ function updatePlot() {
 				type: 'bar'
 			},
 			{
-				name: "Poisson Expectation",
+				name: "Poisson expected points per square",
 				x: x_plot_expectation,
 				y: y_plot_expectation,
 				type: 'bar'
