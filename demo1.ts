@@ -322,6 +322,9 @@ function updatePlot() {
 		},
 		yaxis: {
 			title: 'Number of squares'
+		},
+		legend: {
+			side: 'top'
 		}
 	};
 	var plot_data = [{ // data
