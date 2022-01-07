@@ -59,7 +59,6 @@ var points:Point[];
 
 // TODO: Parallelize this function if there are many points.
 function createPoints () {
-	// console.log("Generating points.");
 	for (var i: number = 0; i < num_points; i++) {
 		// TODO: check that this won't take forever.
 		var x:number = Math.random()*canvas.width *(1.0 - square_side);
@@ -67,7 +66,7 @@ function createPoints () {
 		// Determines if each point is inside a square.
 		squares.forEach(function(square) {
 			if (square.contains(x, y)) {
-				// Count points inside square and records.
+				// Counts points inside square and records.
 				// TODO: If the condition that squares do not overlap is set, then make sure to early break here if a point is in a square, for efficiency.
 				square.points_contained += 1;
 			}
@@ -96,7 +95,7 @@ class Square {
 	}
 	draw() {
 		// Chooses random color. 3 rgb colors mean 3 hex values, meaning 3*8 bits.
-		// So there are 16777216 possible colors from 0 to 16777215.
+		// So there are (2^24) possible colors from 0 to 16777215.
 		ctx.beginPath();
 		ctx.lineWidth = 4;
 		ctx.strokeStyle = "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -127,7 +126,6 @@ var squares: Square[];
 
 function createSquares () {
 	// Ensure squares do not overlap.
-	// console.log("Generating squares (side = " + square_side*canvas.width + ").");
 	// Ensure square area and amount of squares is chosen well.
 	for (var i = 0; i < num_squares; i++) {
 		var x:number;
@@ -142,7 +140,6 @@ function createSquares () {
 		// } while (squareOverlapsSquare(x, y));
 		// Ensure square does not overlap with existing squares.
 		squares.push(new Square(x, y, square_side*canvas.width));
-		// console.log("\tgenerated square " + i + " at (" + x + ", " + y + ")!");
 	}
 	console.log("num squares = " + squares.length);
 }
@@ -158,8 +155,6 @@ function startSimulation() {
 	// Create random points.
 	createPoints();
 }
-
-//document.body.textContent = greeter(user);
 
 function setUpCanvas() {
 	canvas = document.getElementById("disp") as HTMLCanvasElement;
@@ -197,7 +192,6 @@ function getHitCounts() {
 		} else {
 			count_histogram.set(hits, 1);
 		}
-		// console.log("\t\tCounted " + hits + " points for a square.");
 	});
 	console.log("Recorded " + count_histogram.size + " unique counts for all " + squares.length + " squares.");
 	return count_histogram;
@@ -233,10 +227,8 @@ function getPoissonPrediction(num_bins : number): Map<number, number> {
 
 // Updates the plot on the webpage to show how the Poisson distribution is approximated.
 function updatePlot() {
-	// TODO: write function to print histogram to command line
 	let count_histogram: Map<number, number> = getHitCounts();
 	console.log("Printing all " + count_histogram.size + " counts:")
-	// let max_bin: number = Math.max(Array.from(count_histogram.keys()));
 	let max_bin: number =
 	 	Array.from(count_histogram.keys())
 			.reduce(function(previous, current, index, arr){return Math.max(previous, current)});
@@ -263,10 +255,10 @@ function updatePlot() {
 		},
 		yaxis: {
 			title: 'Number of squares'
-		},
-		legend: {
-			side: 'top'
-		}
+		}// ,
+		// legend: {
+		// 	side: 'top'
+		// }
 	};
 	Plotly.newPlot( TESTER,
 		[
