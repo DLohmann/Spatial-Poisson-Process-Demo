@@ -4,13 +4,13 @@
   "description": "Demo of a spatial Poisson point process. See README.md for details.",
   "main": "demo1.js",
   "dependencies": {
-    "gts": "^1.1.2",
+    "gts": "^3.1.1",
     "plotly.js": "^1.52.2"
   },
   "devDependencies": {
     "@types/node": "^10.0.3",
     "@types/plotly.js": "^1.50.12",
-    "gts": "^1.1.2",
+    "gts": "^3.1.1",
     "typescript": "~3.7.0"
   },
   "scripts": {
