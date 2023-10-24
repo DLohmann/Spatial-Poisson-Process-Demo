@@ -6,6 +6,26 @@ https://en.wikipedia.org/wiki/Poisson_point_process
 ## Overview
 Draws random unit squares (area = 1), in a region with area A. Then draws N random points all at once. Records how many points land in each unit square. Does this many times. Then plots how many times 0 points landed in square (how many squares are empty), how many squares contain exactly 1 point, 2 points, etc. Then plots this against the Poisson expected distribution. 
 
+## How to use:
+
+Install Typescript transpiler (if not already installed. Can check for installation with `tsc --version`):
+```bash
+sudo npm install -g typescript
+```
+
+Install Plotly (if not already installed). These installation commands were described in [this stackoverflow post](https://stackoverflow.com/a/58334877/8694392).
+```bash
+npm install plotly.js-dist --save
+npm install @types/plotly.js --save-dev
+npm install @types/d3 --save-dev
+```
+
+Transpile the typescript file to create the javascript file:
+```bash
+tsc demo1.ts
+```
+
+
 ### TODO:
 - Fix the [exports not defined error](https://stackoverflow.com/questions/43472778/typescript-exports-is-not-defined), to ensure that the project is set up correctly, and the javascript does not give an "exports is not defined" error at runtime. Learn to use browserify.
 - Add plot for the number of squares hit by 1 point, 2 points, 3, etc. Figure out how to use plotly in typescript to do ths.

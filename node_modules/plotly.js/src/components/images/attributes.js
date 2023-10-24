@@ -1,21 +1,13 @@
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
 'use strict';
 
 var cartesianConstants = require('../../plots/cartesian/constants');
 var templatedArray = require('../../plot_api/plot_template').templatedArray;
+var axisPlaceableObjs = require('../../constants/axis_placeable_objects');
 
 
 module.exports = templatedArray('image', {
     visible: {
         valType: 'boolean',
-        role: 'info',
         dflt: true,
         editType: 'arraydraw',
         description: [
@@ -25,7 +17,6 @@ module.exports = templatedArray('image', {
 
     source: {
         valType: 'string',
-        role: 'info',
         editType: 'arraydraw',
         description: [
             'Specifies the URL of the image to be used.',
@@ -39,7 +30,6 @@ module.exports = templatedArray('image', {
         valType: 'enumerated',
         values: ['below', 'above'],
         dflt: 'above',
-        role: 'info',
         editType: 'arraydraw',
         description: [
             'Specifies whether images are drawn below or above traces.',
@@ -50,27 +40,29 @@ module.exports = templatedArray('image', {
 
     sizex: {
         valType: 'number',
-        role: 'info',
         dflt: 0,
         editType: 'arraydraw',
         description: [
             'Sets the image container size horizontally.',
             'The image will be sized based on the `position` value.',
             'When `xref` is set to `paper`, units are sized relative',
-            'to the plot width.'
+            'to the plot width.',
+            'When `xref` ends with ` domain`, units are sized relative',
+            'to the axis width.',
         ].join(' ')
     },
 
     sizey: {
         valType: 'number',
-        role: 'info',
         dflt: 0,
         editType: 'arraydraw',
         description: [
             'Sets the image container size vertically.',
             'The image will be sized based on the `position` value.',
             'When `yref` is set to `paper`, units are sized relative',
-            'to the plot height.'
+            'to the plot height.',
+            'When `yref` ends with ` domain`, units are sized relative',
+            'to the axis height.'
         ].join(' ')
     },
 
@@ -78,7 +70,6 @@ module.exports = templatedArray('image', {
         valType: 'enumerated',
         values: ['fill', 'contain', 'stretch'],
         dflt: 'contain',
-        role: 'info',
         editType: 'arraydraw',
         description: [
             'Specifies which dimension of the image to constrain.'
@@ -87,7 +78,6 @@ module.exports = templatedArray('image', {
 
     opacity: {
         valType: 'number',
-        role: 'info',
         min: 0,
         max: 1,
         dflt: 1,
@@ -97,7 +87,6 @@ module.exports = templatedArray('image', {
 
     x: {
         valType: 'any',
-        role: 'info',
         dflt: 0,
         editType: 'arraydraw',
         description: [
@@ -110,7 +99,6 @@ module.exports = templatedArray('image', {
 
     y: {
         valType: 'any',
-        role: 'info',
         dflt: 0,
         editType: 'arraydraw',
         description: [
@@ -125,7 +113,6 @@ module.exports = templatedArray('image', {
         valType: 'enumerated',
         values: ['left', 'center', 'right'],
         dflt: 'left',
-        role: 'info',
         editType: 'arraydraw',
         description: 'Sets the anchor for the x position'
     },
@@ -134,7 +121,6 @@ module.exports = templatedArray('image', {
         valType: 'enumerated',
         values: ['top', 'middle', 'bottom'],
         dflt: 'top',
-        role: 'info',
         editType: 'arraydraw',
         description: 'Sets the anchor for the y position.'
     },
@@ -146,15 +132,10 @@ module.exports = templatedArray('image', {
             cartesianConstants.idRegex.x.toString()
         ],
         dflt: 'paper',
-        role: 'info',
         editType: 'arraydraw',
         description: [
             'Sets the images\'s x coordinate axis.',
-            'If set to a x axis id (e.g. *x* or *x2*), the `x` position',
-            'refers to an x data coordinate',
-            'If set to *paper*, the `x` position refers to the distance from',
-            'the left of plot in normalized coordinates',
-            'where *0* (*1*) corresponds to the left (right).'
+            axisPlaceableObjs.axisRefDescription('x', 'left', 'right'),
         ].join(' ')
     },
 
@@ -165,15 +146,10 @@ module.exports = templatedArray('image', {
             cartesianConstants.idRegex.y.toString()
         ],
         dflt: 'paper',
-        role: 'info',
         editType: 'arraydraw',
         description: [
             'Sets the images\'s y coordinate axis.',
-            'If set to a y axis id (e.g. *y* or *y2*), the `y` position',
-            'refers to a y data coordinate.',
-            'If set to *paper*, the `y` position refers to the distance from',
-            'the bottom of the plot in normalized coordinates',
-            'where *0* (*1*) corresponds to the bottom (top).'
+            axisPlaceableObjs.axisRefDescription('y', 'bottom', 'top'),
         ].join(' ')
     },
     editType: 'arraydraw'

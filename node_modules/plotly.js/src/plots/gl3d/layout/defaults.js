@@ -1,12 +1,3 @@
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
 'use strict';
 
 var Lib = require('../../../lib');
@@ -40,6 +31,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
         font: layoutOut.font,
         fullData: fullData,
         getDfltFromLayout: getDfltFromLayout,
+        autotypenumbersDflt: layoutOut.autotypenumbers,
         paper_bgcolor: layoutOut.paper_bgcolor,
         calendar: layoutOut.calendar
     });
@@ -109,6 +101,7 @@ function handleGl3dDefaults(sceneLayoutIn, sceneLayoutOut, coerce, opts) {
         data: fullGl3dData,
         bgColor: bgColorCombined,
         calendar: opts.calendar,
+        autotypenumbersDflt: opts.autotypenumbersDflt,
         fullLayout: opts.fullLayout
     });
 

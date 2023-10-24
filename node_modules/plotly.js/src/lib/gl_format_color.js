@@ -1,11 +1,3 @@
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
 'use strict';
 
 var isNumeric = require('fast-isnumeric');
@@ -76,14 +68,11 @@ function formatColor(containerIn, opacityIn, len) {
     return colorOut;
 }
 
-function parseColorScale(cont, alpha) {
-    if(alpha === undefined) alpha = 1;
-
+function parseColorScale(cont) {
     var cOpts = Colorscale.extractOpts(cont);
 
-    var colorscale = cOpts.reversescale ?
-        Colorscale.flipScale(cOpts.colorscale) :
-        cOpts.colorscale;
+    var colorscale = cOpts.colorscale;
+    if(cOpts.reversescale) colorscale = Colorscale.flipScale(cOpts.colorscale);
 
     return colorscale.map(function(elem) {
         var index = elem[0];
@@ -91,7 +80,7 @@ function parseColorScale(cont, alpha) {
         var rgb = color.toRgb();
         return {
             index: index,
-            rgb: [rgb.r, rgb.g, rgb.b, alpha]
+            rgb: [rgb.r, rgb.g, rgb.b, rgb.a]
         };
     });
 }

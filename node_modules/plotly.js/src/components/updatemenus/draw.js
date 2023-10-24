@@ -1,15 +1,6 @@
-/**
-* Copyright 2012-2020, Plotly, Inc.
-* All rights reserved.
-*
-* This source code is licensed under the MIT license found in the
-* LICENSE file in the root directory of this source tree.
-*/
-
-
 'use strict';
 
-var d3 = require('d3');
+var d3 = require('@plotly/d3');
 
 var Plots = require('../../plots/plots');
 var Color = require('../color');
@@ -195,8 +186,7 @@ function drawHeader(gd, gHeader, gButton, scrollBox, menuOpts) {
 
     // draw drop arrow at the right edge
     var arrow = Lib.ensureSingle(gHeader, 'text', constants.headerArrowClassName, function(s) {
-        s.classed('user-select-none', true)
-            .attr('text-anchor', 'end')
+        s.attr('text-anchor', 'end')
             .call(Drawing.font, menuOpts.font)
             .text(constants.arrowSymbol[menuOpts.direction]);
     });
@@ -435,11 +425,10 @@ function drawItemRect(item, menuOpts) {
 
 function drawItemText(item, menuOpts, itemOpts, gd) {
     var text = Lib.ensureSingle(item, 'text', constants.itemTextClassName, function(s) {
-        s.classed('user-select-none', true)
-            .attr({
-                'text-anchor': 'start',
-                'data-notex': 1
-            });
+        s.attr({
+            'text-anchor': 'start',
+            'data-notex': 1
+        });
     });
 
     var tx = itemOpts.label;
